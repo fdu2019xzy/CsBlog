@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>CS231n Convolutional_Neural_Networks 04</title>
+    <link href="/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/"/>
+    <url>/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/</url>
+    
+    <content type="html"><![CDATA[<h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png"></p><p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png"></p><h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png"></p><h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png"></p><blockquote><p>We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image</p></blockquote><p>$$W^Tx+b$$<br><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p><ul><li>Then the Outcome:</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png"></p><blockquote><p>We can use different layers on the top of it and get more activation maps stack them together to get a new image, just as the following pic depicted.</p></blockquote><p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png"></p><blockquote><p>Then we can recursively do that work, make the front layer’s output be the next layer’s input</p></blockquote><p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png"></p><p><strong>The Layers may look like..</strong><br><em>Simple -&gt; Complex</em></p><p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png"></p><p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png"></p><ul><li>The Convolution of two signals:</li></ul><p>$$f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]$$</p><ul><li>A little bit preview</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png"></p><hr><ul><li>Convolution Box</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png"></p><blockquote><p>We can tell that the activation maps are becomming smaller after the filter, so we commonly use zero pad to deal with it.</p></blockquote><p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png"></p><p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png"></p><blockquote><p>The Matrix shrinks from 32 —&gt; 28 -&gt; 24 (lose info)</p></blockquote><hr><h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol><li>Accepts a volume of size $W_1 * H_1 * D_1$</li><li>Four Hyperparas<ul><li>Number of filters $K$</li><li>spatial extent $F$</li><li>stride $S$</li><li>zero padding amount $P$</li></ul></li><li>Produces a volume of size $W_2 * H_2 * D_2$<ul><li>$W_2 = (W_1 - F + 2P)/S + 1$</li><li>$H_2 = (H_1 - F + 2P)/S + 1$</li><li>$D_2 = K$ <em>Depth keeps the same</em></li></ul></li></ol><h4 id="Common-Settings"><a href="#Common-Settings" class="headerlink" title="Common Settings"></a>Common Settings</h4><p>K = (powers of 2)</p><ul><li>F = 3, S = 1, P =1</li><li>F = 5, S = 1, P =2</li><li>F = 1, S = 1, P = 0 </li></ul><hr><h3 id="Conv-details"><a href="#Conv-details" class="headerlink" title="Conv details"></a>Conv details</h3><ul><li>One by One CONV</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png"></p><ul><li>EXAMPLE: CONV in pyTorch</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png"></p><ul><li>The Brain/Neuron View of CONV</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png"></p><ul><li>Pooling layer</li></ul><p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png"></p><blockquote><p>Just spacially down sample the image to make it smaller.<br>Common Practice is Max Pooling</p></blockquote><p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png"></p><blockquote><p>We may can just use stride to replace pooling?</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>CS231n</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CV</tag>
+      
+      <tag>Neural Network</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CS231n Introduction to Convolutional neural network 03</title>
     <link href="/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/"/>
     <url>/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/</url>
@@ -14,10 +41,6 @@
     <categories>
       
       <category>CS231n</category>
-      
-      <category>CV</category>
-      
-      <category>Neural Network</category>
       
     </categories>
     
@@ -46,18 +69,14 @@
       
       <category>CS231n</category>
       
-      <category>CV</category>
-      
-      <category>Neural Network</category>
-      
     </categories>
     
     
     <tags>
       
-      <tag>CS231n</tag>
+      <tag>CV</tag>
       
-      <tag>Stanford</tag>
+      <tag>Neural Network</tag>
       
     </tags>
     
@@ -77,18 +96,14 @@
       
       <category>CS231n</category>
       
-      <category>CV</category>
-      
-      <category>Neural Network</category>
-      
     </categories>
     
     
     <tags>
       
-      <tag>CS231n</tag>
+      <tag>CV</tag>
       
-      <tag>Stanford</tag>
+      <tag>Neural Network</tag>
       
     </tags>
     

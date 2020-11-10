@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Xzy">
   <meta name="keywords" content="">
-  <title>CS231n Introduction to Convolutional neural network 03 - Xavier&#39;s Blog</title>
+  <title>CS231n Convolutional_Neural_Networks 04 - Xavier&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="CS231n Introduction to Convolutional neural network 03">
+            <span class="h2" id="subtitle" title="CS231n Convolutional_Neural_Networks 04">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-10 00:57" pubdate>
-        2020年11月10日 凌晨
+      <time datetime="2020-11-11 00:57" pubdate>
+        2020年11月11日 凌晨
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      246 字
+      288 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -224,68 +224,99 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CS231n Introduction to Convolutional neural network 03</h1>
+            <h1 style="display: none">CS231n Convolutional_Neural_Networks 04</h1>
             
             <div class="markdown-body">
-              <h3 id="Computational-graphs"><a href="#Computational-graphs" class="headerlink" title="Computational graphs"></a>Computational graphs</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDAaD.png" srcset="/CsBlog/img/loading.gif"></p>
-<h3 id="BackPropagation-A-method-to-compute-the-gradients-of-abitrarily-complex-function"><a href="#BackPropagation-A-method-to-compute-the-gradients-of-abitrarily-complex-function" class="headerlink" title="BackPropagation - A method to compute the gradients of abitrarily complex function"></a>BackPropagation - A method to compute the gradients of abitrarily complex function</h3><ul>
-<li>A recursive application of Chain rule</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDCKx.png" srcset="/CsBlog/img/loading.gif"></p>
+              <h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>We get the gradient backprop from the front and comupte with the local gradient to prop to the back.</p>
+<p>We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDPr6.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>In some cases, some part of the graph can be represented by some func that we already know to simplify the computations. (trade off the math)</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDiqK.png" srcset="/CsBlog/img/loading.gif"></p>
+<p>$$W^Tx+b$$<br><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p>
 <ul>
-<li>Patterns in backward flow</li>
+<li>Then the Outcome:</li>
 </ul>
-<ol>
-<li><strong>add gate:</strong> gradient distributor (local = 1)</li>
-<li><strong>max gate:</strong> gradient distributor (local = 1 &amp; 0)</li>
-<li><strong>mul gate:</strong> gradient switcher (local = y &amp; x )</li>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>We can use different layers on the top of it and get more activation maps stack them together to get a new image, just as the following pic depicted.</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>Then we can recursively do that work, make the front layer’s output be the next layer’s input</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><strong>The Layers may look like..</strong><br><em>Simple -&gt; Complex</em></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>The Convolution of two signals:</li>
+</ul>
+<p>$$f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]$$</p>
+<ul>
+<li>A little bit preview</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<ul>
+<li>Convolution Box</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>We can tell that the activation maps are becomming smaller after the filter, so we commonly use zero pad to deal with it.</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>The Matrix shrinks from 32 —&gt; 28 -&gt; 24 (lose info)</p>
+</blockquote>
+<hr>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
+<li>Accepts a volume of size $W_1 * H_1 * D_1$</li>
+<li>Four Hyperparas<ul>
+<li>Number of filters $K$</li>
+<li>spatial extent $F$</li>
+<li>stride $S$</li>
+<li>zero padding amount $P$</li>
+</ul>
+</li>
+<li>Produces a volume of size $W_2 * H_2 * D_2$<ul>
+<li>$W_2 = (W_1 - F + 2P)/S + 1$</li>
+<li>$H_2 = (H_1 - F + 2P)/S + 1$</li>
+<li>$D_2 = K$ <em>Depth keeps the same</em></li>
+</ul>
+</li>
 </ol>
-<p><em>Gradients add at branches n-&gt;1</em></p>
+<h4 id="Common-Settings"><a href="#Common-Settings" class="headerlink" title="Common Settings"></a>Common Settings</h4><p>K = (powers of 2)</p>
 <ul>
-<li>Then We Got the gradients in the form of Jacobian Matrix</li>
+<li>F = 3, S = 1, P =1</li>
+<li>F = 5, S = 1, P =2</li>
+<li>F = 1, S = 1, P = 0 </li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDkVO.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDZPH.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><em>This place include some linear algebra</em></p>
-<h3 id="Modularized-implementation-Forward-Backward-API"><a href="#Modularized-implementation-Forward-Backward-API" class="headerlink" title="Modularized implementation: Forward / Backward API"></a>Modularized implementation: Forward / Backward API</h3><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComputationalGraph</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">inputs</span>):</span>
-        <span class="hljs-comment"># 1. pass inputs to input gates</span>
-        <span class="hljs-comment"># 2. forward the computational graph</span>
-        <span class="hljs-keyword">for</span> gate <span class="hljs-keyword">in</span> self.graph.nodes_topologically_sorted():
-            gate.forward()
-        <span class="hljs-keyword">return</span> loss
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span>():</span>
-        <span class="hljs-keyword">for</span> gate <span class="hljs-keyword">in</span> <span class="hljs-built_in">reversed</span>(self.graph.nodes_topologically_sorted())
-            gate.backward() <span class="hljs-comment"># compute the gradients</span>
-        <span class="hljs-keyword">return</span> inputs_gradients</code></pre>
-
-<h4 id="EXAMPLE-MulGate"><a href="#EXAMPLE-MulGate" class="headerlink" title="EXAMPLE: MulGate"></a>EXAMPLE: MulGate</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultiplyGate</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">x, y</span>):</span>
-        z = x*y
-        self.x = x
-        self.y = y
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backward</span>(<span class="hljs-params">dz</span>):</span>
-        dx = self.y * z
-        dy = self.x * z
-        <span class="hljs-keyword">return</span> [dx, dy]</code></pre>
-
+<hr>
+<h3 id="Conv-details"><a href="#Conv-details" class="headerlink" title="Conv details"></a>Conv details</h3><ul>
+<li>One by One CONV</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>EXAMPLE: CONV in pyTorch</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>The Brain/Neuron View of CONV</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>Pooling layer</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>This practice is common.</p>
+<p>Just spacially down sample the image to make it smaller.<br>Common Practice is Max Pooling</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDeGd.png" srcset="/CsBlog/img/loading.gif"></p>
-<h3 id="Summary-so-Far"><a href="#Summary-so-Far" class="headerlink" title="Summary so Far"></a>Summary so Far</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDmRA.png" srcset="/CsBlog/img/loading.gif"></p>
-<h3 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h3><p>(Before) Linear score function: $f = Wx$<br>(Now) 2-layers Neural Network $f = W_2max(0, W_1x)$<br>….or more layers</p>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDEIe.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>The h is the scores W1 output, and we put one more linear layer W2 on the top of it to weighting the scores given by h </p>
+<p>We may can just use stride to replace pooling?</p>
 </blockquote>
 
             </div>
@@ -304,9 +335,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/CsBlog/tags/CS231n/">CS231n</a>
+                      <a class="hover-with-bg" href="/CsBlog/tags/CV/">CV</a>
                     
-                      <a class="hover-with-bg" href="/CsBlog/tags/Stanford/">Stanford</a>
+                      <a class="hover-with-bg" href="/CsBlog/tags/Neural-Network/">Neural Network</a>
                     
                   </div>
                 
@@ -319,18 +350,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CS231n Convolutional_Neural_Networks 04</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/08/CS231n_02_Loss-Functions-and-Optimization/">
-                        <span class="hidden-mobile">CS231n Loss Functions and Optimization 02</span>
+                      <a href="/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/">
+                        <span class="hidden-mobile">CS231n Introduction to Convolutional neural network 03</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -349,8 +374,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/';
-        this.page.identifier = '/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/';
+        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
+        this.page.identifier = '/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');

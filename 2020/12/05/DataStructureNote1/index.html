@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      3.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      40
        分钟
     </span>
   
@@ -296,7 +296,8 @@
 <p>RMQ问题一般可以使用单调栈、ST表、线段树来解决</p>
 <p>通过欧拉序将LCA问题转为RMQ问题后，我们一般使用ST表来解决RMQ问题。因为ST表在时间复杂度上表现优秀，需要 O(nlgn)的预处理，就能做到O(1)的询问。而写起来又较为简单，不像线段树一样复杂。可以处理大部分不需要在线修改的 RMQ 问题。</p>
 <p>另一方面如果我们使用单调栈和线段树在单次询问的时间复杂度仍然是 O(lgn) 级别的本没有做到比倍增算法更优，但在代码方面却比倍增算法更为复杂，因而我们选择ST表进行处理。</p>
-<h3 id="ST表-Sparse-table"><a href="#ST表-Sparse-table" class="headerlink" title="ST表 - Sparse table"></a><strong>ST表 - Sparse table</strong></h3><p>我们说 ST 表可以用来解决可重复贡献问题，因为ST表涉及到区间重叠，我们要保证区间重叠不会影响到我们要求的问题。所以ST表只能解决可重复贡献问题，例如最值和gcd</p>
+<h3 id="ST表-Sparse-table"><a href="#ST表-Sparse-table" class="headerlink" title="ST表 - Sparse table"></a><strong>ST表 - Sparse table</strong></h3><p>我们说 ST 表可以用来解决可重复贡献问题，因为ST表涉及到区间重叠，我们要保证区间重叠不会影响到我们要求的问题。所以ST表只能解决可重复贡献问题，例如最值和gcd。</p>
+<p>ST表运用的也是倍增的思想，通过倍增区间覆盖来解决问题。</p>
 <pre><code class="hljs cpp"><span class="hljs-comment">// ST表</span>
 <span class="hljs-keyword">int</span> f[Max][lgn], Logn[Max], a[Max];
 <span class="hljs-comment">// f[i][k] 表示区间 i ~ i + 2^k - 1 的最值</span>
@@ -437,8 +438,18 @@
     <span class="hljs-keyword">return</span> fa[x] = find(fa[x]); <span class="hljs-comment">// 路径压缩</span>
 &#125;</code></pre>
 
+<ul>
+<li><strong>复杂度分析</strong></li>
+</ul>
+<p>我们现在来分析一下复杂度，朴素算法毫无疑问单次操作是 $O(mn)$ 的<br>如果我们使用了路径压缩，在Tarjan大神的论文[1] 中给出了复杂度的证明，只使用路径压缩不使用按秩合并的最坏时间复杂度是 $O(mlogn)$ 已经满足大部分题的需求，所以一般只需要路径压缩就能过题。<br>在姚期智的论文 [2] 中，证明了只路径压缩的平均复杂度为 $O(m\alpha{(m,n)})$<br><em>注： $\alpha$ 是阿克曼函数的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。</em></p>
+<p>如果我们同时使用了路径压缩和按秩合并，那么我们可以做到 $O(m\alpha{(m,n)})$ 的最坏时间复杂度。相当于单次询问是常数级别复杂度。</p>
+<p>Ackermann 函数<br>$$<br>A(m,n) =\left{<br>\begin{array}{l}<br>    n + 1, ; m = 0 \<br>    A(m - 1, 1), m &gt; 0 ;and; n = 0 \<br>    A(m - 1, A(m, n - 1)),;othercases<br>\end{array}<br>\right.<br>$$</p>
+<p>$A(4, 3)$ 大的惊人，其反函数增长就相对应慢的惊人，直接可看为常数</p>
 <hr>
-<h2 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h2>
+<h2 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h2><p>讲一下这周作业题里涉及到的树上差分算法</p>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]Tarjan, R. E., &amp; Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms.</p>
+
             </div>
             <hr>
             <div>
